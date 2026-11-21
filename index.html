@@ -3,48 +3,58 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0F5C4D">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>আমার ইবাদত খাতা</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#EDF2F0;--sf:#FFFFFF;--ink:#14292B;--mute:#5B706F;--line:#D3DEDB;--g:#0F5C4D;--gs:#DCEFE9;--gold:#A87A1B;--alone:#C99A2E;--qaza:#C9703A;--miss:#B5483F;--none:#E3EBE9;--on:#fff;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1A1B;--sf:#142526;--ink:#E6F0EE;--mute:#93A9A6;--line:#26403F;--g:#4CC1A6;--gs:#17413B;--gold:#E0B454;--alone:#D8AE45;--qaza:#E0885A;--miss:#E0746B;--none:#223837;--on:#06231D}}
-:root[data-theme="dark"]{--bg:#0C1A1B;--sf:#142526;--ink:#E6F0EE;--mute:#93A9A6;--line:#26403F;--g:#4CC1A6;--gs:#17413B;--gold:#E0B454;--alone:#D8AE45;--qaza:#E0885A;--miss:#E0746B;--none:#223837;--on:#06231D}
+:root{--bg:#EDF3F0;--sf:#FFFFFF;--ink:#14292B;--mute:#5B706F;--line:#D8E2DF;--g:#0F5C4D;--g2:#17846E;--gs:#DCEFE9;--gold:#A87A1B;--alone:#C99A2E;--qaza:#C9703A;--miss:#B5483F;--none:#E3EBE9;--on:#fff;--sh:0 1px 2px rgba(15,60,50,.06),0 8px 22px rgba(15,60,50,.07);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1819;--sf:#132425;--ink:#E6F0EE;--mute:#93A9A6;--line:#26403F;--g:#4CC1A6;--g2:#2E9F88;--gs:#17413B;--gold:#E0B454;--alone:#D8AE45;--qaza:#E0885A;--miss:#E0746B;--none:#223837;--on:#06231D;--sh:0 1px 2px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0B1819;--sf:#132425;--ink:#E6F0EE;--mute:#93A9A6;--line:#26403F;--g:#4CC1A6;--g2:#2E9F88;--gs:#17413B;--gold:#E0B454;--alone:#D8AE45;--qaza:#E0885A;--miss:#E0746B;--none:#223837;--on:#06231D;--sh:0 1px 2px rgba(0,0,0,.35)}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali","Kalpurush",system-ui,sans-serif;font-size:16px;line-height:1.6}
-.wrap{max-width:660px;margin:0 auto;padding:14px 12px 70px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.wrap{max-width:660px;margin:0 auto;padding:14px 12px 100px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.who{display:flex;gap:6px;align-items:center}
 h1{font-size:21px;margin:2px 0;font-weight:700}
 .sub{color:var(--mute);font-size:13px;margin:0 0 8px}
-.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:8px 0 12px}
-.tab{padding:8px 0;border:1px solid var(--line);background:var(--sf);color:var(--ink);border-radius:10px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
-.tab[aria-pressed=true]{background:var(--g);color:var(--on);border-color:var(--g)}
-button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.date{display:flex;align-items:center;justify-content:space-between;background:var(--sf);border:1px solid var(--line);border-radius:12px;padding:6px 8px;margin-bottom:12px}
-.date button{border:0;background:none;color:var(--g);font:inherit;font-size:20px;padding:4px 12px;cursor:pointer}
+.ib{border:1px solid var(--line);background:var(--sf);border-radius:10px;padding:4px 9px;font-size:16px;cursor:pointer;color:var(--ink)}
+.nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;background:var(--sf);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:20;box-shadow:0 -6px 20px rgba(15,60,50,.08)}
+.nav:empty{display:none}
+.nav .tab{flex:1;max-width:110px;border:0;background:none;color:var(--mute);font:inherit;font-size:11.5px;display:flex;flex-direction:column;align-items:center;padding:2px 0;border-radius:10px;cursor:pointer}
+.nav .tab .ic{font-size:20px;line-height:1.25}
+.nav .tab[aria-pressed=true]{color:var(--g);font-weight:700}
+.nav .tab[aria-pressed=true] .ic{transform:scale(1.15)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.date{display:flex;align-items:center;justify-content:space-between;background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:6px 8px;margin-bottom:12px;box-shadow:var(--sh)}
+.date button{border:0;background:none;color:var(--g);font:inherit;font-size:22px;padding:2px 14px;cursor:pointer}
+.date button:disabled{opacity:.25;cursor:default}
 .date .d{text-align:center;font-weight:600}
 .date .d small{display:block;color:var(--mute);font-weight:400;font-size:13px}
-.hero{background:var(--g);color:var(--on);border-radius:14px;padding:14px 16px;margin-bottom:12px}
-.hero b{font-size:30px;line-height:1.1}
-.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
-.hero .nx{display:block;margin-top:8px;font-size:14px;opacity:.95}
-.dots{display:flex;gap:6px;margin-top:10px}
-.dots i{flex:1;height:8px;border-radius:4px;background:var(--on);opacity:.3}
-.dots i.on{opacity:1}
-.card{background:var(--sf);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.hero{background:linear-gradient(135deg,var(--g),var(--g2));color:var(--on);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.09;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 3l5 9 10-1-5 9 9 5-9 5 5 9-10-1-5 9-5-9-10 1 5-9-9-5 9-5-5-9 10 1z' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E")}
+.hero>*{position:relative;z-index:1}
+.hero b{font-size:28px;line-height:1.1}
+.hero .nx{display:block;margin-top:6px;font-size:13px;opacity:.95}
+.dh{display:flex;align-items:center;gap:14px}
+.ringbox{position:relative;width:92px;height:92px;flex:none}
+.ringbox svg circle+circle{transition:stroke-dashoffset .5s}
+.rt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+.rt b{font-size:20px}.rt small{font-size:11px;opacity:.9}
+.hi{flex:1;font-size:14px}
+.hb{font-size:24px;font-weight:700;line-height:1.25}.hb small{font-size:13px;font-weight:500}
+.card{background:var(--sf);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:12px;box-shadow:var(--sh)}
+.card.sp{border-left:4px solid var(--gold)}
+.spl{font-size:15px;padding:2px 0}
 h2{font-size:17px;margin:0 0 8px}
 .pr{padding:8px 0;border-top:1px solid var(--line)}
 .pr:first-of-type{border-top:0}
 .pr .n{font-weight:600;margin-bottom:6px;display:flex;justify-content:space-between}
 .pr .n small{color:var(--mute);font-weight:400;font-size:13px}
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.seg button,.btn{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:7px 0;font:inherit;font-size:14px;cursor:pointer}
+.seg button,.btn{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:7px 0;font:inherit;font-size:14px;cursor:pointer;transition:transform .08s}
+.seg button:active,.btn:active{transform:scale(.96)}
 .seg button.on[data-v="1"]{background:var(--g);border-color:var(--g);color:var(--on)}
 .seg button.on[data-v="2"]{background:var(--alone);border-color:var(--alone);color:#1b1400}
 .seg button.on[data-v="3"]{background:var(--qaza);border-color:var(--qaza);color:#1b0a00}
@@ -54,21 +64,37 @@ h2{font-size:17px;margin:0 0 8px}
 .chk input{width:20px;height:20px;accent-color:var(--g)}
 .num{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
 .num:first-of-type{border-top:0}
-input[type=number],input[type=text],select,textarea{padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;max-width:100%}
+input[type=number],input[type=text],select,textarea{padding:7px 8px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;max-width:100%}
 input[type=number]{width:84px;text-align:center}
-textarea{width:100%;min-height:90px;font-size:13px}
+textarea{width:100%;min-height:80px;font-size:14px}
+.pg{height:9px;background:var(--none);border-radius:5px;overflow:hidden;margin-top:6px}
+.pg i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--g2));border-radius:5px;transition:width .4s}
+.pg.ok i{background:linear-gradient(90deg,var(--gold),var(--alone))}
+.pgt{font-size:13px;color:var(--mute);margin-top:4px}
+.pgt.ok{color:var(--g);font-weight:600}
+.qk{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.qk button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:3px 13px;font:inherit;font-size:13px;cursor:pointer}
+.qk button:active{transform:scale(.95)}
+.qk button.on{background:var(--gs);border-color:var(--g);color:var(--g);font-weight:600}
+.drops{display:flex;flex-wrap:wrap;gap:2px;margin-top:6px}
+.dp{border:0;background:none;font-size:22px;padding:0 2px;cursor:pointer;opacity:.25;filter:grayscale(1)}
+.dp.on{opacity:1;filter:none}
 .seg2{display:flex;gap:6px;margin-bottom:12px}
-.seg2 button{flex:1;padding:7px 0;border:1px solid var(--line);background:var(--sf);color:var(--ink);border-radius:999px;font:inherit;cursor:pointer}
+.seg2 button{flex:1;padding:8px 0;border:1px solid var(--line);background:var(--sf);color:var(--ink);border-radius:999px;font:inherit;cursor:pointer}
 .seg2 button[aria-pressed=true]{border-color:var(--g);background:var(--gs);color:var(--g);font-weight:600}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.st{background:var(--sf);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
-.st b{font-size:25px;display:block;line-height:1.2;color:var(--g)}
+.st{background:var(--sf);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--sh)}
+.st b{font-size:25px;display:block;line-height:1.25;color:var(--g)}
 .st span{font-size:13px;color:var(--mute)}
 .bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}
 .bar .l{width:70px}
 .bar .t{flex:1;height:10px;background:var(--none);border-radius:5px;overflow:hidden}
-.bar .t i{display:block;height:100%;background:var(--g)}
+.bar .t i{display:block;height:100%;background:var(--g);border-radius:5px}
 .bar .v{width:44px;text-align:right;color:var(--mute)}
+.gl{padding:8px 0;border-top:1px solid var(--line)}
+.gl:first-of-type{border-top:0}
+.gb{display:flex;align-items:flex-end;gap:3px;height:74px}
+.gb i{flex:1;min-width:4px;border-radius:3px 3px 0 0;background:var(--none)}
 .scroll{overflow-x:auto}
 .grid{display:grid;gap:3px;min-width:max-content}
 .grid .c{width:14px;height:14px;border-radius:3px;background:var(--none)}
@@ -77,7 +103,7 @@ textarea{width:100%;min-height:90px;font-size:13px}
 .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--mute);margin-top:8px}
 .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .act{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.act button{flex:1;min-width:120px;padding:10px;border-radius:10px;border:1px solid var(--g);background:var(--sf);color:var(--g);font:inherit;font-weight:600;cursor:pointer}
+.act button{flex:1;min-width:120px;padding:10px;border-radius:12px;border:1px solid var(--g);background:var(--sf);color:var(--g);font:inherit;font-weight:600;cursor:pointer}
 .act button.pri{background:var(--g);color:var(--on)}
 .act button.dg{border-color:var(--miss);color:var(--miss)}
 .msg{font-size:14px;color:var(--gold);margin:6px 0;min-height:1.4em;font-weight:600}
@@ -88,21 +114,25 @@ textarea{width:100%;min-height:90px;font-size:13px}
 .tt:first-of-type{border-top:0}
 .tt.nxt{color:var(--g);font-weight:700}
 .chip{display:inline-block;background:var(--none);border-radius:999px;padding:1px 10px;margin:2px;font-size:13px}
+.bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 11px;margin:3px;border-radius:999px;font-size:13px;border:1px solid var(--line);background:var(--bg);color:var(--mute)}
+.bdg.on{background:var(--gs);color:var(--g);border-color:var(--g);font-weight:600}
 .qrow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line);gap:8px}
 .qrow:first-of-type{border-top:0}
 .qc{display:flex;align-items:center;gap:6px}
-.qc button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;cursor:pointer}
+.qc button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:18px;cursor:pointer}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .row2 label{font-size:13px;color:var(--mute);display:block}
 .row2 input{width:100%;text-align:left}
+.tap{width:190px;height:190px;border-radius:50%;border:0;background:linear-gradient(145deg,var(--g),var(--g2));color:var(--on);font:inherit;font-size:54px;font-weight:700;display:block;margin:14px auto;box-shadow:0 12px 26px rgba(15,60,50,.28);cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:transform .08s}
+.tap:active{transform:scale(.95)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><div><h1>🕌 আমার ইবাদত খাতা</h1><p class="sub">জামাত, ইবাদত ও সুস্থ শরীরের হিসাব</p></div><div id="who"></div></div>
-  <div class="tabs" id="tabs"></div>
+  <div class="top"><div><h1>🕌 আমার ইবাদত খাতা</h1><p class="sub">জামাত, ইবাদত ও সুস্থ শরীরের হিসাব</p></div><div id="who" class="who"></div></div>
   <div id="app"></div>
 </div>
+<nav class="nav" id="tabs" aria-label="প্রধান মেনু"></nav>
 <script>
 (function(){
 var PR=['ফজর','যোহর','আসর','মাগরিব','এশা'],ST=['','জামাতে','একাকী','কাযা','বাদ'];
@@ -115,8 +145,8 @@ var FTIP=['রাতে আগে ঘুমান, দুটি অ্যাল�
 var K='ibadat-khata-v2',S={p:{},cur:'',set:{city:0,lat:23.8103,lng:90.4125,adj:-1,nf:false}},tab='day',cd=iso(new Date()),mode='m',mo={y:new Date().getFullYear(),m:new Date().getMonth()},msg='',NF={};
 try{var rw=localStorage.getItem(K);if(rw){var o=JSON.parse(rw);if(o&&o.p)S=o;}else{var old=localStorage.getItem('ibadat-khata-v1');if(old){S.p.me=newP('আমি');S.p.me.d=JSON.parse(old)||{};S.cur='me';}}}catch(e){}
 S.set=Object.assign({city:0,lat:23.8103,lng:90.4125,adj:-1,nf:false},S.set||{});
-if(!S.p[S.cur])S.cur=Object.keys(S.p)[0]||'';
-function newP(n){return{n:n,d:{},qz:[0,0,0,0,0],qa:{},cu:[],ord:[],hide:{},ren:{},g:{j:80,q:30,e:600}};}
+if(!S.p[S.cur])S.cur=Object.keys(S.p)[0]||'';migrate();
+function newP(n){return{n:n,d:{},qz:[0,0,0,0,0],qa:{},cu:[],ord:[],hide:{},ren:{},g:{j:80,q:20,e:30,w:8,v:2}};}
 function save(){try{localStorage.setItem(K,JSON.stringify(S));}catch(e){}}
 function P(){return S.p[S.cur];}
 function iso(d){var m=d.getMonth()+1,x=d.getDate();return d.getFullYear()+'-'+(m<10?'0':'')+m+'-'+(x<10?'0':'')+x;}
@@ -135,8 +165,45 @@ function ent(d){return P().d[d]||(P().d[d]=blank());}
 function pct(a,b){return b?Math.round(a*100/b):0;}
 function fmtD(s,long){try{return fromIso(s).toLocaleDateString('bn-BD',long?{weekday:'long',day:'numeric',month:'long',year:'numeric'}:{day:'numeric',month:'short'});}catch(e){return s;}}
 function hijri(s){try{var d=fromIso(s);d.setDate(d.getDate()+(+S.set.adj||0));
-  var t=new Intl.DateTimeFormat('bn-BD-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(d);
-  var m=parseInt(new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric'}).format(d),10);return{t:t,m:m};}catch(e){return{t:'',m:0};}}
+  var t=new Intl.DateTimeFormat('bn-BD-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(d),m=0,dd=0;
+  new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',month:'numeric'}).formatToParts(d).forEach(function(p){if(p.type==='month')m=parseInt(p.value,10);if(p.type==='day')dd=parseInt(p.value,10);});
+  return{t:t,m:m,d:dd};}catch(e){return{t:'',m:0,d:0};}}
+var PARA=20,KHATAM=600;
+function migrate(){Object.keys(S.p).forEach(function(k){var p=S.p[k];p.g=p.g||{};if(p.g.v!==2){p.g.j=p.g.j||80;p.g.q=20;p.g.e=30;p.g.w=8;p.g.v=2;}p.cu=p.cu||[];p.ord=p.ord||[];p.hide=p.hide||{};p.ren=p.ren||{};p.qa=p.qa||{};p.qz=p.qz||[0,0,0,0,0];p.d=p.d||{};});}
+function isDark(){return S.set.th==='dark'||(!S.set.th&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);}
+function nf(x){return bn(+(+x).toFixed(1));}
+function hasData(e){return e.p.some(function(v){return v;})||e.q||e.ex||e.w||e.sl||e.note||Object.keys(e.i||{}).some(function(k){return e.i[k];})||Object.keys(e.x||{}).some(function(k){return e.x[k];});}
+function loggedDays(){var d=P().d;return Object.keys(d).filter(function(k){return hasData(d[k]);}).sort();}
+function trim(l){var f=loggedDays()[0]||'9999';return l.filter(function(d){return d>=f;});}
+function qTotal(){var t=0,d=P().d;for(var k in d)t+=+d[k].q||0;return t;}
+function bestStreak(){var ks=Object.keys(P().d).filter(function(k){return P().d[k].p.every(function(v){return v===1;});}).sort(),b=0,c=0,pr=null;
+  ks.forEach(function(k){var t=fromIso(k).getTime();c=(pr!==null&&Math.round((t-pr)/864e5)===1)?c+1:1;pr=t;if(c>b)b=c;});return b;}
+function prog(v,g,u,x){if(!g)return'';var p=Math.min(100,Math.round(v*100/g)),ok=v>=g;
+  return'<div class="pg'+(ok?' ok':'')+'"><i style="width:'+p+'%"></i></div><div class="pgt'+(ok?' ok':'')+'">'+(ok?'✓ আজকের লক্ষ্য পূর্ণ'+(v>g?' (লক্ষ্যের চেয়ে '+nf(v-g)+' '+u+' বেশি)':''):'লক্ষ্য '+nf(g)+' '+u+(x||'')+' · বাকি '+nf(g-v)+' '+u)+'</div>';}
+function qk(f,arr){return'<div class="qk">'+arr.map(function(n){return'<button data-a="add" data-f="'+f+'" data-n="'+n+'">+'+bn(n)+'</button>';}).join('')+'<button data-a="add" data-f="'+f+'" data-n="-'+arr[0]+'" aria-label="কমান">−'+bn(arr[0])+'</button></div>';}
+function dayScore(e){var g=P().g,ps=0,pv=[0,1,.6,.4,0],its=items(),ia=0;
+  e.p.forEach(function(v){ps+=pv[v]||0;});
+  its.forEach(function(x){if(x.t==='n'){var v=+((e.x||{})[x.id])||0;ia+=x.g?Math.min(v/x.g,1):(v>0?1:0);}else ia+=e.i[x.id]?1:0;});
+  var iv=its.length?ia/its.length:0,q=g.q?Math.min((+e.q||0)/g.q,1):0,ex=g.e?Math.min((+e.ex||0)/g.e,1):0,w=g.w?Math.min((+e.w||0)/g.w,1):0;
+  return Math.round((0.5*ps/5+0.2*iv+0.1*q+0.1*ex+0.1*w)*100);}
+function specials(s,hj){var w=fromIso(s).getDay(),r=[],m=hj.m,d=hj.d;
+  if(w===1||w===4)r.push('সুন্নাত নফল রোজার দিন (সোম ও বৃহস্পতিবার)');
+  if(w===5)r.push('জুমার দিন: গোসল, আগে মসজিদে যাওয়া, সূরা কাহফ ও বেশি বেশি দরুদ');
+  if(m&&m!==9&&d>=13&&d<=15&&!(m===12&&d===13))r.push('আইয়ামে বীযের রোজা (চান্দ্র মাসের ১৩, ১৪, ১৫ তারিখ)');
+  if(m===9)r.push('রমজান: রোজা, তারাবিহ ও কুরআন তিলাওয়াত বাড়ান');
+  if(m===12&&d>=1&&d<=9)r.push('যিলহজের প্রথম দশ দিন: নেক আমল বাড়ানোর সময়'+(d===9?' · আজ আরাফার দিন, রোজা রাখা মুস্তাহাব':''));
+  if(m===1&&(d===9||d===10||d===11))r.push('আশুরার রোজা (১০ মুহাররম, সঙ্গে ৯ বা ১১ তারিখ) রাখা মুস্তাহাব');
+  if(m===10&&d>=2)r.push('শাওয়াল মাস: ছয়টি নফল রোজার সুযোগ');
+  return r;}
+function badges(){var T=qTotal(),bs=bestStreak(),lg=loggedDays().length;
+  return[['৩ দিন টানা ৫ ওয়াক্ত জামাত',bs>=3],['৭ দিন টানা জামাত',bs>=7],['৩০ দিন টানা জামাত',bs>=30],['১০ পারা পড়া',T>=10*PARA],['১ খতম',T>=KHATAM],['৭ দিন খাতা লেখা',lg>=7],['৩০ দিন খাতা লেখা',lg>=30]];}
+function monLbl(){return new Date(mo.y,mo.m,1).toLocaleDateString('bn-BD',{month:'long',year:'numeric'});}
+function repTitle(){return mode==='w'?'সাপ্তাহিক ইবাদত রিপোর্ট (গত ৭ দিন)':'মাসিক ইবাদত রিপোর্ট — '+monLbl();}
+function curList(){return trim(mode==='w'?wlist():mlist(mo.y,mo.m));}
+var TS=[['সুবহানাল্লাহ',33],['আলহামদুলিল্লাহ',33],['আল্লাহু আকবার',34],['ইস্তিগফার',100],['দরুদ শরীফ',100],['লা ইলাহা ইল্লাল্লাহ',100]];
+function tas(){S.tas=S.tas||{i:0,n:0,r:0,t:0};return S.tas;}
+function tasView(){var t=tas(),p=TS[t.i]||TS[0];
+  return'<div class="card"><h2>📿 তাসবিহ কাউন্টার</h2><div class="qk" style="justify-content:center">'+TS.map(function(x,i){return'<button data-a="tpre" data-i="'+i+'" class="'+(t.i===i?'on':'')+'">'+x[0]+'</button>';}).join('')+'</div><p style="text-align:center;margin:10px 0 0;font-weight:600">'+p[0]+' · লক্ষ্য '+bn(p[1])+'</p><button class="tap" data-a="tap" aria-label="গণনা করুন"><span id="tc">'+bn(t.n)+'</span></button><div class="pg"><i id="tp" style="width:'+pct(t.n,p[1])+'%"></i></div><p class="pgt" id="tr">পূর্ণ রাউন্ড: '+bn(t.r)+' · মোট: '+bn(t.t)+'</p><div class="act"><button data-a="tundo">−১ ভুল হলে</button><button class="dg" data-a="treset">রিসেট</button></div></div>';}
 function streak(){var d=iso(new Date()),n=0;if(!get(d).p.every(function(v){return v===1;}))d=shift(d,-1);
   while(n<3650&&get(d).p.every(function(v){return v===1;})){n++;d=shift(d,-1);}return n;}
 //PT-START
@@ -169,52 +236,64 @@ function nxText(){var x=nextP(),s=Math.max(0,Math.floor(x.s));
 function tick(){var els=document.querySelectorAll('.nx');for(var i=0;i<els.length;i++)els[i].textContent=nxText();
   if(S.set.nf&&window.Notification&&Notification.permission==='granted'){var n=new Date(),h=n.getHours()+n.getMinutes()/60+n.getSeconds()/3600,t=times(n,S.set.lat,S.set.lng);
     for(var k=0;k<5;k++){var key=iso(n)+k;if(!NF[key]&&Math.abs(h-t[SI[k]])<1/120){NF[key]=1;try{new Notification(PR[k]+' নামাজের ওয়াক্ত হয়েছে',{body:'জামাতে নামাজের চেষ্টা করুন।'});}catch(e){}}}}}
-function an(list){var a={n:list.length,lg:0,jm:[0,0,0,0,0],pd:[0,0,0,0,0],ms:[0,0,0,0,0],qa:0,pf:0,Q:0,EX:0,W:0,SL:0,sd:0,ib:{},cs:{},wj:[0,0,0,0,0,0,0],wn:[0,0,0,0,0,0,0],ml:[],J:0,C:0,M:0};
+function an(list){var g=P().g,a={n:list.length,lg:0,jm:[0,0,0,0,0],pd:[0,0,0,0,0],ms:[0,0,0,0,0],qa:0,pf:0,Q:0,EX:0,W:0,SL:0,sd:0,wd:0,exd:0,qd:0,qm:0,em:0,wm:0,ib:{},cs:{},wj:[0,0,0,0,0,0,0],wn:[0,0,0,0,0,0,0],ml:[],jd:[],J:0,C:0,M:0};
   IB.concat(RM).forEach(function(x){a.ib[x[0]]=0;});
-  list.forEach(function(d){var e=get(d),w=fromIso(d).getDay(),any=false,j=0;
+  list.forEach(function(d){var e=get(d),w=fromIso(d).getDay(),any=false,j=0,q=+e.q||0,ex=+e.ex||0,wt=+e.w||0,k;
     e.p.forEach(function(v,k){if(v)any=true;if(v===1){a.jm[k]++;j++;a.wj[w]++;}if(v>0&&v<4)a.pd[k]++;if(v===3)a.qa++;if(v===4){a.ms[k]++;a.ml.push([d,k]);}});
-    a.wn[w]+=5;if(j===5)a.pf++;
-    var ib=false;for(var k in e.i)if(e.i[k]){ib=true;a.ib[k]=(a.ib[k]||0)+1;}for(var k2 in (e.x||{}))if(+e.x[k2]>0){ib=true;a.ib[k2]=(a.ib[k2]||0)+1;a.cs[k2]=(a.cs[k2]||0)+(+e.x[k2]);}
-    if(any||ib||e.q||e.ex||e.w||e.sl)a.lg++;
-    a.Q+=+e.q||0;a.EX+=+e.ex||0;a.W+=+e.w||0;if(+e.sl){a.SL+=+e.sl;a.sd++;}});
+    a.jd.push(j);a.wn[w]+=5;if(j===5)a.pf++;
+    var ib=false;for(k in e.i)if(e.i[k]){ib=true;a.ib[k]=(a.ib[k]||0)+1;}
+    for(k in (e.x||{}))if(+e.x[k]>0){ib=true;a.ib[k]=(a.ib[k]||0)+1;a.cs[k]=(a.cs[k]||0)+(+e.x[k]);}
+    a.Q+=q;a.EX+=ex;a.W+=wt;if(q>0)a.qd++;if(ex>0)a.exd++;if(wt>0)a.wd++;
+    if(g.q&&q>=g.q)a.qm++;if(g.e&&ex>=g.e)a.em++;if(g.w&&wt>=g.w)a.wm++;
+    if(+e.sl){a.SL+=+e.sl;a.sd++;}
+    if(any||ib||q||ex||wt||e.sl||e.note)a.lg++;});
   a.J=a.jm.reduce(function(x,y){return x+y;},0);a.C=a.pd.reduce(function(x,y){return x+y;},0);a.M=a.ms.reduce(function(x,y){return x+y;},0);return a;}
 function mlist(y,m){var l=[],t=iso(new Date()),last=new Date(y,m+1,0).getDate();for(var d=1;d<=last;d++){var s=iso(new Date(y,m,d));if(s<=t)l.push(s);}return l;}
 function wlist(){var l=[];for(var i=6;i>=0;i--)l.push(shift(iso(new Date()),-i));return l;}
-function insights(a){var g=P().g,r=[],sc=a.n/30;if(!a.n)return[{c:'',s:'এই সময়ে এখনো কোনো দিন পূর্ণ হয়নি।'}];
-  var jp=pct(a.J,5*a.n);
+function insights(a){var g=P().g,r=[],n=a.n,k;if(!n)return[{c:'',s:'এই সময়ে এখনো কোনো তথ্য নেই।'}];
+  var jp=pct(a.J,5*n);
   r.push({c:jp>=g.j?'ok':'bad',s:'জামাতের হার '+bn(jp)+'%, আপনার লক্ষ্য '+bn(g.j)+'%। '+(jp>=g.j?'লক্ষ্য পূরণ হয়েছে, আলহামদুলিল্লাহ।':'লক্ষ্যে পৌঁছাতে আরও '+bn(g.j-jp)+'% বাড়ানো দরকার।')});
-  var wk=0,k;for(k=1;k<5;k++)if(a.jm[k]<a.jm[wk])wk=k;
-  if(pct(a.jm[wk],a.n)<100)r.push({c:'bad',s:PR[wk]+' ওয়াক্তে জামাত সবচেয়ে কম ('+bn(pct(a.jm[wk],a.n))+'%)। '+FTIP[wk]});
+  var wk=0;for(k=1;k<5;k++)if(a.jm[k]<a.jm[wk])wk=k;
+  if(a.jm[wk]<n)r.push({c:'bad',s:PR[wk]+' ওয়াক্তে জামাত সবচেয়ে কম ('+bn(pct(a.jm[wk],n))+'%)। '+FTIP[wk]});
   if(a.M)r.push({c:'bad',s:bn(a.M)+' ওয়াক্ত নামাজ বাদ পড়েছে। কাযা আদায় করুন এবং তাওবা করুন।'});
   if(a.qa)r.push({c:'',s:bn(a.qa)+' ওয়াক্ত কাযা হয়েছে। ওয়াক্তের ভেতরেই পড়ার চেষ্টা করুন।'});
   var wi=-1,wv=101;for(k=0;k<7;k++)if(a.wn[k]){var v=pct(a.wj[k],a.wn[k]);if(v<wv){wv=v;wi=k;}}
   if(wi>=0&&wv<jp-10)r.push({c:'',s:WD[wi]+' দিন জামাত সবচেয়ে কম ('+bn(wv)+'%)। ওই দিনের রুটিন একটু গুছিয়ে নিন।'});
-  var gq=Math.round(g.q*sc);if(gq&&a.Q<gq)r.push({c:'bad',s:'কুরআন তিলাওয়াত লক্ষ্যের চেয়ে '+bn(gq-a.Q)+' পৃষ্ঠা কম। প্রতিদিন অন্তত '+bn(Math.ceil(g.q/30))+' পৃষ্ঠা পড়লে পূরণ হবে।'});
-  var ge=Math.round(g.e*sc);if(ge&&a.EX<ge)r.push({c:'bad',s:'ব্যায়াম লক্ষ্যের চেয়ে '+bn(ge-a.EX)+' মিনিট কম। প্রতিদিন '+bn(Math.ceil(g.e/30))+' মিনিট হাঁটলেও হবে।'});
-  if(a.n&&a.W/a.n<6)r.push({c:'',s:'গড়ে দিনে '+bn((a.W/a.n).toFixed(1))+' গ্লাস পানি পান করেছেন। ৮ গ্লাসের চেষ্টা করুন।'});
-  if(a.sd&&(a.SL/a.sd<6||a.SL/a.sd>9))r.push({c:'',s:'গড় ঘুম '+bn((a.SL/a.sd).toFixed(1))+' ঘণ্টা। ৬ থেকে ৮ ঘণ্টা ঘুম ফজরের জামাতে সাহায্য করে।'});
-  if(a.n-a.lg>0)r.push({c:'',s:bn(a.n-a.lg)+' দিন খাতা পূরণ হয়নি। রাতে শোয়ার আগে এক মিনিট সময় দিন।'});
-  if(r.length===1&&r[0].c==='ok')r.push({c:'ok',s:'বড় কোনো ভুল ধরা পড়েনি। এই ধারা ধরে রাখুন।'});return r;}
-function repText(a,title){return title+'\nজামাতে নামাজ: '+bn(pct(a.J,5*a.n))+'%\nনামাজ আদায়: '+bn(pct(a.C,5*a.n))+'%\n৫ ওয়াক্তই জামাতে: '+bn(a.pf)+' দিন\nবাদ: '+bn(a.M)+' ওয়াক্ত\nকুরআন: '+bn(a.Q)+' পৃষ্ঠা\nব্যায়াম: '+bn(a.EX)+' মিনিট';}
+  if(g.q){var sq=Math.max(0,g.q*n-a.Q);
+    if(a.qm>=n)r.push({c:'ok',s:'কুরআন: প্রতিদিন '+nf(g.q)+' পৃষ্ঠার লক্ষ্য সব দিনই পূর্ণ হয়েছে, মাশা-আল্লাহ।'});
+    else r.push({c:'bad',s:'কুরআন: '+bn(n)+' দিনের মধ্যে '+bn(a.qm)+' দিন দৈনিক লক্ষ্য ('+nf(g.q)+' পৃষ্ঠা) পূর্ণ হয়েছে। লক্ষ্যের তুলনায় মোট '+nf(sq)+' পৃষ্ঠা (≈ '+nf(sq/PARA)+' পারা) বাকি। ফজর ও এশার পর '+nf(g.q/2)+' পৃষ্ঠা করে দুই বসায় পড়লে সহজ হবে।'});}
+  if(g.e){var se=Math.max(0,g.e*n-a.EX);
+    if(a.em>=n)r.push({c:'ok',s:'ব্যায়াম: প্রতিদিন '+nf(g.e)+' মিনিটের লক্ষ্য সব দিনই পূর্ণ হয়েছে।'});
+    else r.push({c:'bad',s:'ব্যায়াম: '+bn(n)+' দিনের মধ্যে '+bn(a.em)+' দিন '+nf(g.e)+' মিনিটের লক্ষ্য পূর্ণ হয়েছে। মোট '+nf(se)+' মিনিট বাকি। আসর বা মাগরিবের পর হাঁটার অভ্যাস করুন।'});}
+  if(g.w){if(a.wd&&a.wm>=n)r.push({c:'ok',s:'পানি: প্রতিদিন '+nf(g.w)+' গ্লাসের লক্ষ্য সব দিনই পূর্ণ হয়েছে।'});
+    else if(a.wd)r.push({c:'',s:'পানি: লেখা দিনগুলোতে গড়ে '+nf(a.W/a.wd)+' গ্লাস পান করেছেন, লক্ষ্য '+nf(g.w)+' গ্লাস। '+bn(a.wm)+' দিন লক্ষ্য পূর্ণ হয়েছে।'});}
+  if(a.sd&&(a.SL/a.sd<6||a.SL/a.sd>9))r.push({c:'',s:'গড় ঘুম '+nf(a.SL/a.sd)+' ঘণ্টা। ৬ থেকে ৮ ঘণ্টা ঘুম ফজরের জামাতে সাহায্য করে।'});
+  if(n-a.lg>0)r.push({c:'',s:bn(n-a.lg)+' দিন খাতা পূরণ হয়নি। রাতে শোয়ার আগে এক মিনিট সময় দিন।'});
+  if(!r.some(function(x){return x.c==='bad';}))r.push({c:'ok',s:'বড় কোনো ভুল ধরা পড়েনি। এই ধারা ধরে রাখুন।'});
+  return r;}
+function repText(a,t){return t+'\n('+bn(a.n)+' দিনের হিসাব)\nজামাতে নামাজ: '+bn(pct(a.J,5*a.n))+'%\nনামাজ আদায়: '+bn(pct(a.C,5*a.n))+'%\n৫ ওয়াক্তই জামাতে: '+bn(a.pf)+' দিন\nবাদ: '+bn(a.M)+' ওয়াক্ত\nকুরআন: '+nf(a.Q)+' পৃষ্ঠা, লক্ষ্য পূর্ণ '+bn(a.qm)+'/'+bn(a.n)+' দিন\nব্যায়াম: '+nf(a.EX)+' মিনিট, লক্ষ্য পূর্ণ '+bn(a.em)+'/'+bn(a.n)+' দিন\nপানি: লক্ষ্য পূর্ণ '+bn(a.wm)+'/'+bn(a.n)+' দিন';}
 function selHtml(){var ids=Object.keys(S.p);if(ids.length<2)return'';
   return'<select data-prof aria-label="প্রোফাইল">'+ids.map(function(i){return'<option value="'+i+'"'+(i===S.cur?' selected':'')+'>'+esc(S.p[i].n)+'</option>';}).join('')+'</select>';}
 function onboard(){return'<div class="card"><h2>আসসালামু আলাইকুম</h2><p>এই খাতায় নামাজ, জামাত, কুরআন, অন্যান্য ইবাদত ও শরীরচর্চার হিসাব রাখা যায়। শুরু করতে আপনার নাম লিখুন।</p><input type="text" id="nm" placeholder="আপনার নাম" maxlength="30" style="width:100%"><div class="act"><button class="pri" data-a="addprof">শুরু করুন</button></div></div>';}
 function dayView(){
-  var e=get(cd),j=e.p.filter(function(v){return v===1;}).length,hj=hijri(cd),tm=times(fromIso(cd),S.set.lat,S.set.lng);
-  var h='<div class="date"><button data-a="nav" data-n="-1" aria-label="আগের দিন">‹</button><div class="d">'+fmtD(cd,true)+'<small>'+(hj.t?hj.t+' হিজরি · ':'')+(cd===iso(new Date())?'আজ':'<a href="#" data-a="today" style="color:var(--g)">আজকে ফিরে যান</a>')+'</small></div><button data-a="nav" data-n="1" aria-label="পরের দিন">›</button></div>';
-  h+='<div class="hero"><div class="row"><div><b>'+bn(j)+'/৫</b><div>ওয়াক্ত জামাতে</div></div><div style="text-align:right"><b>'+bn(streak())+'</b><div>দিন টানা জামাত</div></div></div><div class="dots">';
-  for(var k=0;k<5;k++)h+='<i class="'+(e.p[k]===1?'on':'')+'"></i>';
-  h+='</div><span class="nx"></span></div><div class="card"><h2>পাঁচ ওয়াক্ত নামাজ</h2>';
+  var g=P().g,e=get(cd),today=iso(new Date()),j=e.p.filter(function(v){return v===1;}).length,hj=hijri(cd),tm=times(fromIso(cd),S.set.lat,S.set.lng),sc=dayScore(e),C=2*Math.PI*34,off=(C*(1-sc/100)).toFixed(1),qv=+e.q||0,xv=+e.ex||0,wv=+e.w||0,sp=specials(cd,hj),T=qTotal(),i;
+  var h='<div class="date"><button data-a="nav" data-n="-1" aria-label="আগের দিন">‹</button><div class="d">'+fmtD(cd,true)+'<small>'+(hj.t?hj.t+' হিজরি · ':'')+(cd===today?'আজ':'<a href="#" data-a="today" style="color:var(--g)">আজকে ফিরে যান</a>')+'</small></div><button data-a="nav" data-n="1" aria-label="পরের দিন"'+(cd>=today?' disabled':'')+'>›</button></div>';
+  h+='<div class="hero dh"><div class="ringbox"><svg viewBox="0 0 80 80" width="92" height="92" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="7"/><circle cx="40" cy="40" r="34" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+off+'" transform="rotate(-90 40 40)"/></svg><div class="rt"><b>'+bn(sc)+'%</b><small>অগ্রগতি</small></div></div><div class="hi"><div class="hb">'+bn(j)+'/৫ <small>ওয়াক্ত জামাতে</small></div><div>🔥 '+bn(streak())+' দিন টানা ৫ ওয়াক্ত জামাত</div><span class="nx"></span></div></div>';
+  if(sp.length)h+='<div class="card sp"><h2>🌙 আজকের বিশেষ আমল</h2>'+sp.map(function(x){return'<div class="spl">• '+x+'</div>';}).join('')+'<p class="sub" style="margin:6px 0 0">হিজরি তারিখ চাঁদ দেখার ওপর নির্ভর করে, তাই এক দিন এদিক-ওদিক হতে পারে।</p></div>';
+  h+='<div class="card"><h2>🕌 পাঁচ ওয়াক্ত নামাজ</h2>';
   PR.forEach(function(n,k){h+='<div class="pr"><div class="n">'+n+'<small>'+t12(tm[SI[k]])+'</small></div><div class="seg" data-p="'+k+'">';
     for(var v=1;v<=4;v++)h+='<button data-a="seg" data-v="'+v+'" class="'+(e.p[k]===v?'on':'')+'" aria-pressed="'+(e.p[k]===v)+'">'+ST[v]+'</button>';h+='</div></div>';});
-  h+='</div><div class="card"><h2>আমার নিয়মিত আমল</h2>';
+  h+='</div><div class="card"><h2>📖 কুরআন তিলাওয়াত</h2><div class="num"><span>আজ পড়েছেন (পৃষ্ঠা)</span><input type="number" inputmode="decimal" min="0" data-n="q" value="'+(e.q||'')+'"></div>'+qk('q',[1,5,10])+prog(qv,g.q,'পৃষ্ঠা',g.q===PARA?' (১ পারা)':'');
+  if(T>0){var kh=Math.floor(T/KHATAM),rm=T%KHATAM;h+='<div class="pgt" style="margin-top:8px">মোট '+nf(T)+' পৃষ্ঠা পড়া হয়েছে · '+(kh?bn(kh)+' খতম · ':'')+'এখন পারা '+bn(Math.floor(rm/PARA)+1)+' চলছে · পরবর্তী খতমে আর '+nf(KHATAM-rm)+' পৃষ্ঠা</div>';}
+  h+='</div><div class="card"><h2>🤲 আমার নিয়মিত আমল</h2>';
   items().forEach(function(x){if(x.t==='n'){h+='<div class="num"><span>'+esc(x.n)+(x.u?' ('+esc(x.u)+')':'')+(x.g?' · লক্ষ্য '+bn(x.g):'')+'</span><input type="number" inputmode="decimal" min="0" data-cx="'+x.id+'" value="'+(((e.x||{})[x.id])||'')+'"></div>';}else h+='<label class="chk"><input type="checkbox" data-ib="'+x.id+'"'+(e.i[x.id]?' checked':'')+'><span>'+esc(x.n)+'</span></label>';});
-  h+='<div class="num"><span>কুরআন তিলাওয়াত (পৃষ্ঠা)</span><input type="number" inputmode="numeric" min="0" data-n="q" value="'+(e.q||'')+'"></div><div class="act"><button data-a="goedit">＋ আমল যোগ করুন / তালিকা বদলান</button></div></div>';
-  if(hj.m===9){h+='<div class="card"><h2>রমজানের আমল</h2>';RM.forEach(function(x){h+='<label class="chk"><input type="checkbox" data-ib="'+x[0]+'"'+(e.i[x[0]]?' checked':'')+'><span>'+x[1]+'</span></label>';});h+='</div>';}
-  h+='<div class="card"><h2>শরীর ও সুস্থতা</h2>';
-  h+='<div class="num"><span>ব্যায়াম / হাঁটা (মিনিট)</span><input type="number" inputmode="numeric" min="0" data-n="ex" value="'+(e.ex||'')+'"></div>';
-  h+='<div class="num"><span>পানি (গ্লাস, লক্ষ্য ৮)</span><input type="number" inputmode="numeric" min="0" data-n="w" value="'+(e.w||'')+'"></div>';
-  h+='<div class="num"><span>ঘুম (ঘণ্টা)</span><input type="number" inputmode="decimal" min="0" step="0.5" data-n="sl" value="'+(e.sl||'')+'"></div></div>';
+  h+='<div class="act"><button data-a="goedit">＋ আমল যোগ করুন / তালিকা বদলান</button></div></div>';
+  if(hj.m===9){h+='<div class="card"><h2>🌙 রমজানের আমল</h2>';RM.forEach(function(x){h+='<label class="chk"><input type="checkbox" data-ib="'+x[0]+'"'+(e.i[x[0]]?' checked':'')+'><span>'+x[1]+'</span></label>';});h+='</div>';}
+  h+='<div class="card"><h2>💪 শরীর ও সুস্থতা</h2><div class="num"><span>ব্যায়াম / হাঁটা (মিনিট)</span><input type="number" inputmode="decimal" min="0" data-n="ex" value="'+(e.ex||'')+'"></div>'+qk('ex',[10,15,30])+prog(xv,g.e,'মিনিট','');
+  h+='<div class="num" style="margin-top:10px"><span>পানি (গ্লাস)</span><input type="number" inputmode="decimal" min="0" data-n="w" value="'+(e.w||'')+'"></div><div class="drops">';
+  var wn=Math.min(30,Math.max(+g.w||8,Math.ceil(wv)));for(i=1;i<=wn;i++)h+='<button class="dp'+(i<=wv?' on':'')+'" data-a="wset" data-v="'+i+'" aria-label="'+bn(i)+' গ্লাস">💧</button>';
+  h+='</div>'+prog(wv,g.w,'গ্লাস','')+'<div class="num" style="margin-top:8px"><span>ঘুম (ঘণ্টা)</span><input type="number" inputmode="decimal" min="0" step="0.5" data-n="sl" value="'+(e.sl||'')+'"></div></div>';
+  h+='<div class="card"><h2>📝 আজকের নোট</h2><textarea data-note placeholder="আজ কী ভালো হলো, কোন ভুল হলো, কাল কী করব?">'+esc(e.note||'')+'</textarea></div>';
   var doy=Math.floor((fromIso(cd)-new Date(fromIso(cd).getFullYear(),0,0))/864e5);
   return h+'<p class="tip">'+TIPS[doy%TIPS.length]+'</p>';}
 function timeView(){
@@ -230,26 +309,37 @@ function timeView(){
   h+='<div class="num"><span>হিজরি তারিখ সমন্বয় (চাঁদ দেখা অনুযায়ী)</span><select data-adj>'+[-2,-1,0,1].map(function(v){return'<option value="'+v+'"'+(+S.set.adj===v?' selected':'')+'>'+(v>0?'+':'')+bn(v)+' দিন</option>';}).join('')+'</select></div>';
   h+='<div class="act"><button data-a="geo">আমার অবস্থান নিন</button><button data-a="notif">'+(S.set.nf?'রিমাইন্ডার বন্ধ করুন':'ওয়াক্তের রিমাইন্ডার চালু করুন')+'</button></div><div class="msg">'+esc(msg)+'</div><p class="sub">রিমাইন্ডার শুধু তখনই আসবে যখন এই পেজ ব্রাউজারে খোলা থাকবে। আজানের শব্দ এই সংস্করণে নেই।</p></div>';
   return h;}
+function glRow(ic,lb,met,n,detail){return'<div class="gl"><div class="bar" style="margin:0"><span class="l" style="width:auto;font-weight:600">'+ic+' '+lb+'</span><span class="t"><i style="width:'+pct(met,n)+'%"></i></span><span class="v" style="width:auto">'+bn(met)+'/'+bn(n)+' দিন</span></div><div class="pgt">'+detail+'</div></div>';}
 function repView(){
-  var list=mode==='w'?wlist():mlist(mo.y,mo.m),a=an(list),g=P().g,title=mode==='w'?'সাপ্তাহিক ইবাদত রিপোর্ট':'মাসিক ইবাদত রিপোর্ট — '+new Date(mo.y,mo.m,1).toLocaleDateString('bn-BD',{month:'long',year:'numeric'});
-  var h='<div class="seg2"><button data-a="mode" data-m="w" aria-pressed="'+(mode==='w')+'">গত ৭ দিন</button><button data-a="mode" data-m="m" aria-pressed="'+(mode==='m')+'">মাসিক</button></div>';
-  if(mode==='m'){h+='<div class="date"><button data-a="mnav" data-n="-1" aria-label="আগের মাস">‹</button><div class="d">'+new Date(mo.y,mo.m,1).toLocaleDateString('bn-BD',{month:'long',year:'numeric'})+'<small>'+bn(a.n)+' দিনের হিসাব</small></div><button data-a="mnav" data-n="1" aria-label="পরের মাস">›</button></div>';}
-  var jp=pct(a.J,5*a.n),pv='';
-  if(mode==='m'){var pm=an(mlist(mo.m?mo.y:mo.y-1,mo.m?mo.m-1:11));if(pm.n){var df=jp-pct(pm.J,5*pm.n);pv='<span style="font-size:12px;color:var(--mute)">আগের মাসের তুলনায় '+(df>=0?'+':'−')+bn(Math.abs(df))+'%</span>';}}
-  h+='<div class="stats"><div class="st"><b>'+bn(jp)+'%</b><span>জামাতে নামাজ '+pv+'</span></div><div class="st"><b>'+bn(pct(a.C,5*a.n))+'%</b><span>নামাজ আদায় (জামাত + একাকী)</span></div><div class="st"><b>'+bn(a.pf)+' দিন</b><span>৫ ওয়াক্তই জামাতে</span></div><div class="st"><b>'+bn(a.M)+'</b><span>ওয়াক্ত বাদ পড়েছে</span></div><div class="st"><b>'+bn(a.Q)+'</b><span>পৃষ্ঠা কুরআন</span></div><div class="st"><b>'+bn(a.EX)+' মি.</b><span>মোট ব্যায়াম</span></div></div>';
-  h+='<div class="card"><h2>ভুল ও সংশোধনের তালিকা</h2>';
+  var list=curList(),a=an(list),g=P().g,now=new Date(),atNow=mo.y===now.getFullYear()&&mo.m===now.getMonth(),h='';
+  h+='<div class="seg2"><button data-a="mode" data-m="w" aria-pressed="'+(mode==='w')+'">গত ৭ দিন</button><button data-a="mode" data-m="m" aria-pressed="'+(mode==='m')+'">মাসিক</button></div>';
+  if(mode==='m')h+='<div class="date"><button data-a="mnav" data-n="-1" aria-label="আগের মাস">‹</button><div class="d">'+monLbl()+'<small>'+(a.n?bn(a.n)+' দিনের হিসাব':'তথ্য নেই')+'</small></div><button data-a="mnav" data-n="1" aria-label="পরের মাস"'+(atNow?' disabled':'')+'>›</button></div>';
+  if(!a.n)return h+'<div class="card"><p style="margin:0">এই সময়ের কোনো তথ্য নেই। “আজ” ট্যাবে নামাজ ও আমল লিখতে শুরু করুন। রিপোর্ট আপনার প্রথম লেখার তারিখ থেকে হিসাব করা হয়।</p></div>';
+  var n=a.n,jp=pct(a.J,5*n),pv='';
+  if(mode==='m'){var py=mo.m?mo.y:mo.y-1,pm=mo.m?mo.m-1:11,pa=an(trim(mlist(py,pm)));if(pa.n){var df=jp-pct(pa.J,5*pa.n);pv='<br><span style="font-size:12px">আগের মাসের তুলনায় '+(df>=0?'+':'−')+bn(Math.abs(df))+'%</span>';}}
+  h+='<div class="stats"><div class="st"><b>'+bn(jp)+'%</b><span>জামাতে নামাজ'+pv+'</span></div><div class="st"><b>'+bn(pct(a.C,5*n))+'%</b><span>নামাজ আদায় (জামাত + একাকী)</span></div><div class="st"><b>'+bn(a.pf)+' দিন</b><span>৫ ওয়াক্তই জামাতে</span></div><div class="st"><b>'+bn(a.M)+'</b><span>ওয়াক্ত বাদ পড়েছে</span></div></div>';
+  h+='<div class="card"><h2>🎯 দৈনিক লক্ষ্য পূরণ</h2>';
+  h+=glRow('📖','কুরআন ('+nf(g.q)+' পৃষ্ঠা/দিন)',a.qm,n,'মোট '+nf(a.Q)+' পৃষ্ঠা (≈ '+nf(a.Q/PARA)+' পারা)'+(a.qd?' · লেখা দিনগুলোতে গড় '+nf(a.Q/a.qd)+' পৃষ্ঠা':'')+' · লক্ষ্যের তুলনায় বাকি '+nf(Math.max(0,g.q*n-a.Q))+' পৃষ্ঠা');
+  h+=glRow('🏃','ব্যায়াম ('+nf(g.e)+' মিনিট/দিন)',a.em,n,'মোট '+nf(a.EX)+' মিনিট'+(a.exd?' · লেখা দিনগুলোতে গড় '+nf(a.EX/a.exd)+' মিনিট':'')+' · লক্ষ্যের তুলনায় বাকি '+nf(Math.max(0,g.e*n-a.EX))+' মিনিট');
+  h+=glRow('💧','পানি ('+nf(g.w)+' গ্লাস/দিন)',a.wm,n,a.wd?'লেখা দিনগুলোতে গড় '+nf(a.W/a.wd)+' গ্লাস':'কোনো দিন পানি লেখা হয়নি');
+  h+='<div class="gl"><span style="font-weight:600">😴 ঘুম</span> <span class="pgt">'+(a.sd?'গড় '+nf(a.SL/a.sd)+' ঘণ্টা':'লেখা হয়নি')+'</span></div></div>';
+  h+='<div class="card"><h2>🛠 ভুল ও সংশোধনের তালিকা</h2>';
   insights(a).forEach(function(x){h+='<div class="ins '+x.c+'">'+x.s+'</div>';});
-  if(a.ml.length){h+='<div style="margin-top:8px"><b style="font-size:14px">বাদ পড়া ওয়াক্ত:</b><br>'+a.ml.slice(0,40).map(function(m){return'<span class="chip">'+fmtD(m[0])+' '+PR[m[1]]+'</span>';}).join('')+'</div><div class="act"><button data-a="addqz">বাদ পড়াগুলো কাযা তালিকায় যোগ করুন</button></div>';}
+  if(a.ml.length)h+='<div style="margin-top:8px"><b style="font-size:14px">বাদ পড়া ওয়াক্ত:</b><br>'+a.ml.slice(0,40).map(function(m){return'<span class="chip">'+fmtD(m[0])+' '+PR[m[1]]+'</span>';}).join('')+'</div><div class="act"><button data-a="addqz">বাদ পড়াগুলো কাযা তালিকায় যোগ করুন</button></div>';
   h+='<div class="msg">'+esc(msg)+'</div></div>';
+  h+='<div class="card"><h2>দৈনিক জামাত (০ থেকে ৫)</h2><div class="gb">'+a.jd.map(function(j,i){return'<i title="'+fmtD(list[i])+': '+bn(j)+' ওয়াক্ত জামাতে" style="height:'+Math.max(6,j*20)+'%;'+(j===5?'background:var(--g)':j>=3?'background:var(--alone)':j>=1?'background:var(--qaza)':'')+'"></i>';}).join('')+'</div></div>';
   h+='<div class="card"><h2>ওয়াক্ত অনুযায়ী জামাত</h2>';
-  PR.forEach(function(n,k){var p=pct(a.jm[k],a.n);h+='<div class="bar"><span class="l">'+n+'</span><span class="t"><i style="width:'+p+'%"></i></span><span class="v">'+bn(p)+'%</span></div>';});
+  PR.forEach(function(nm,k){var p=pct(a.jm[k],n);h+='<div class="bar"><span class="l">'+nm+'</span><span class="t"><i style="width:'+p+'%"></i></span><span class="v">'+bn(p)+'%</span></div>';});
   h+='</div><div class="card"><h2>নামাজের ছক</h2><div class="scroll"><div class="grid" style="grid-template-columns:auto repeat('+Math.max(1,list.length)+',14px)">';
-  PR.forEach(function(n,k){h+='<div class="rl">'+n+'</div>';list.forEach(function(d){var v=get(d).p[k];h+='<div class="c v'+v+'" title="'+fmtD(d)+' — '+(ST[v]||'লেখা নেই')+'"></div>';});});
+  PR.forEach(function(nm,k){h+='<div class="rl">'+nm+'</div>';list.forEach(function(d){var v=get(d).p[k];h+='<div class="c v'+v+'" title="'+fmtD(d)+' — '+(ST[v]||'লেখা নেই')+'"></div>';});});
   h+='</div></div><div class="legend"><span><i style="background:var(--g)"></i>জামাতে</span><span><i style="background:var(--alone)"></i>একাকী</span><span><i style="background:var(--qaza)"></i>কাযা</span><span><i style="background:var(--miss)"></i>বাদ</span><span><i style="background:var(--none)"></i>লেখা নেই</span></div></div>';
   h+='<div class="card"><h2>ইবাদতের হিসাব (কত দিন)</h2>';
-  items(true).filter(function(x){return !x.h||a.ib[x.id];}).concat(RM.filter(function(x){return a.ib[x[0]];}).map(function(x){return{id:x[0],n:x[1]};})).forEach(function(x){var c=a.ib[x.id]||0,p=pct(c,a.n);h+='<div class="bar"><span class="l" style="width:128px;font-size:13px">'+esc(x.n)+(x.t==='n'&&a.cs[x.id]?' (মোট '+bn(+a.cs[x.id].toFixed(1))+(x.u?' '+esc(x.u):'')+')':'')+'</span><span class="t"><i style="width:'+p+'%"></i></span><span class="v">'+bn(c)+'</span></div>';});
-  h+='</div><div class="card"><h2>শরীর ও সুস্থতা</h2><div class="num"><span>দিনে গড় পানি</span><b>'+bn((a.n?a.W/a.n:0).toFixed(1))+' গ্লাস</b></div><div class="num"><span>গড় ঘুম</span><b>'+(a.sd?bn((a.SL/a.sd).toFixed(1))+' ঘণ্টা':'—')+'</b></div></div>';
-  h+='<div class="card"><h2>মাসিক লক্ষ্য ঠিক করুন</h2><div class="num"><span>জামাতের হার (%)</span><input type="number" min="0" max="100" data-g="j" value="'+g.j+'"></div><div class="num"><span>কুরআন (পৃষ্ঠা)</span><input type="number" min="0" data-g="q" value="'+g.q+'"></div><div class="num"><span>ব্যায়াম (মিনিট)</span><input type="number" min="0" data-g="e" value="'+g.e+'"></div></div>';
+  items(true).filter(function(x){return !x.h||a.ib[x.id];}).concat(RM.filter(function(x){return a.ib[x[0]];}).map(function(x){return{id:x[0],n:x[1]};})).forEach(function(x){var c=a.ib[x.id]||0,p=pct(c,n);h+='<div class="bar"><span class="l" style="width:128px;font-size:13px">'+esc(x.n)+(x.t==='n'&&a.cs[x.id]?' (মোট '+nf(a.cs[x.id])+(x.u?' '+esc(x.u):'')+')':'')+'</span><span class="t"><i style="width:'+p+'%"></i></span><span class="v">'+bn(c)+'</span></div>';});
+  h+='</div>';
+  var notes=list.filter(function(d){return get(d).note;}).slice(-8).reverse();
+  if(notes.length){h+='<div class="card"><h2>📝 আমার নোট</h2>';notes.forEach(function(d){h+='<div class="ins"><b>'+fmtD(d)+'</b> — '+esc(get(d).note)+'</div>';});h+='</div>';}
+  h+='<div class="card"><h2>🏅 অর্জন</h2>'+badges().map(function(b){return'<span class="bdg'+(b[1]?' on':'')+'">'+(b[1]?'🏅':'🔒')+' '+b[0]+'</span>';}).join('')+'</div>';
+  h+='<div class="card"><h2>দৈনিক লক্ষ্য ঠিক করুন</h2><div class="num"><span>জামাতের হার (%)</span><input type="number" min="0" max="100" data-g="j" value="'+g.j+'"></div><div class="num"><span>কুরআন (পৃষ্ঠা/দিন) · ২০ = ১ পারা</span><input type="number" min="0" data-g="q" value="'+g.q+'"></div><div class="num"><span>ব্যায়াম (মিনিট/দিন)</span><input type="number" min="0" data-g="e" value="'+g.e+'"></div><div class="num"><span>পানি (গ্লাস/দিন)</span><input type="number" min="0" data-g="w" value="'+g.w+'"></div></div>';
   return h+'<div class="act"><button class="pri" data-a="copyrep">রিপোর্ট কপি করুন</button></div>';}
 var TPL=[['আয়াতুল কুরসী (ফরজ নামাজের পর)','c'],['সূরা মুলক (ঘুমের আগে)','c'],['সূরা কাহফ (জুমার দিন)','c'],['ঘুমের আগে দোয়া ও যিকির','c'],['পরিবারকে সময় দেওয়া','c'],['দ্বীনি ইলম শেখা','c'],['বই পড়া','n','পৃষ্ঠা'],['তাসবিহ / যিকির','n','বার']];
 function editView(){var h='<div class="card"><h2>আমার নিয়মিত আমলের তালিকা</h2><p class="sub">নাম বদলান, ↑↓ দিয়ে সাজান, লুকান বা মুছুন। এই পরিবর্তন শুধু আপনার প্রোফাইলে হবে।</p>';
@@ -266,25 +356,26 @@ function moreView(){var ids=Object.keys(S.p),bk=JSON.stringify(S),url=location.h
   h+='<div class="card"><h2>প্রোফাইল (পরিবারের সদস্য)</h2>';ids.forEach(function(i){h+='<div class="qrow"><span>'+esc(S.p[i].n)+(i===S.cur?' ✓':'')+'</span><span class="qc"><button style="width:auto;padding:0 10px;font-size:14px" data-a="selprof" data-i="'+i+'">বেছে নিন</button><button style="width:auto;padding:0 10px;font-size:14px" data-a="delprof" data-i="'+i+'">মুছুন</button></span></div>';});
   h+='<div class="num"><input type="text" id="nm" placeholder="নতুন সদস্যের নাম" maxlength="30" style="flex:1"><button class="btn" style="padding:7px 14px" data-a="addprof">যোগ করুন</button></div></div>';
   h+='<div class="card"><h2>ব্যাকআপ ও ফিরিয়ে আনা</h2><p class="sub">ফোন বা ব্রাউজার বদলালে তথ্য হারাতে না চাইলে নিচের লেখা কপি করে কোথাও সংরক্ষণ করুন। নতুন জায়গায় পেস্ট করে ফিরিয়ে আনুন।</p><textarea id="bk" readonly>'+esc(bk)+'</textarea><div class="act"><button data-a="copybk">ব্যাকআপ কপি করুন</button></div><textarea id="imp" placeholder="এখানে ব্যাকআপ পেস্ট করুন" style="margin-top:8px"></textarea><div class="act"><button data-a="impbk">ফিরিয়ে আনুন</button><button class="dg" data-a="reset">সব মুছুন</button></div><div class="msg">'+esc(msg)+'</div></div>';
-  return h+'<p class="sub"><a href="privacy.html" style="color:var(--g)">গোপনীয়তা নীতি</a></p>';}
-function draw(){var T=[['day','আজ'],['time','সময়'],['rep','রিপোর্ট'],['qz','কাযা'],['more','আরও']];
-  document.getElementById('who').innerHTML=S.cur?selHtml():'';
-  document.getElementById('tabs').innerHTML=S.cur?T.map(function(t){return'<button class="tab" data-tab="'+t[0]+'" aria-pressed="'+(tab===t[0]||(tab==='edit'&&t[0]==='day'))+'">'+t[1]+'</button>';}).join(''):'';
-  document.getElementById('app').innerHTML=!S.cur?onboard():tab==='day'?dayView():tab==='time'?timeView():tab==='rep'?repView():tab==='qz'?qzView():tab==='edit'?editView():moreView();tick();}
+  return h+'<p class="sub">টিপ: ব্রাউজারের মেনু থেকে “হোম স্ক্রিনে যোগ করুন” দিলে এটি অ্যাপের মতো খোলা যাবে।</p>';}
+function draw(){var T=[['day','☀️','আজ'],['time','🕌','সময়'],['tas','📿','তাসবিহ'],['rep','📊','রিপোর্ট'],['qz','🔁','কাযা'],['more','⚙️','আরও']];
+  document.documentElement.removeAttribute('data-theme');if(S.set.th)document.documentElement.setAttribute('data-theme',S.set.th);
+  document.getElementById('who').innerHTML=(S.cur?selHtml():'')+'<button class="ib" data-a="theme" aria-label="থিম বদলান">'+(isDark()?'☀️':'🌙')+'</button>';
+  document.getElementById('tabs').innerHTML=S.cur?T.map(function(t){return'<button class="tab" data-tab="'+t[0]+'" aria-pressed="'+(tab===t[0]||(tab==='edit'&&t[0]==='day'))+'"><span class="ic">'+t[1]+'</span><span>'+t[2]+'</span></button>';}).join(''):'';
+  document.getElementById('app').innerHTML=!S.cur?onboard():tab==='day'?dayView():tab==='time'?timeView():tab==='tas'?tasView():tab==='rep'?repView():tab==='qz'?qzView():tab==='edit'?editView():moreView();tick();}
 function say(t){msg=t;draw();}
 function cp(t,ok){var bad='কপি করা যায়নি। লেখাটি চেপে ধরে নিজে কপি করুন।';function fb(){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var r=document.execCommand('copy');document.body.removeChild(ta);say(r?ok:bad);}catch(e){say(bad);}}try{navigator.clipboard.writeText(t).then(function(){say(ok);},fb);}catch(e){fb();}}
 var app=document.getElementById('app');
 document.addEventListener('click',function(ev){var t=ev.target,b=t.closest('[data-tab]');
-  if(b){tab=b.dataset.tab;msg='';draw();return;}
+  if(b){tab=b.dataset.tab;msg='';draw();window.scrollTo(0,0);return;}
   b=t.closest('[data-a]');if(!b)return;var a=b.dataset.a,e,i;
-  if(a==='nav'){cd=shift(cd,+b.dataset.n);draw();}
+  if(a==='nav'){var nd=shift(cd,+b.dataset.n);if(nd<=iso(new Date())){cd=nd;draw();}}
   else if(a==='today'){ev.preventDefault();cd=iso(new Date());draw();}
   else if(a==='seg'){var k=+b.parentNode.dataset.p,v=+b.dataset.v;e=ent(cd);e.p[k]=e.p[k]===v?0:v;save();draw();}
   else if(a==='mode'){mode=b.dataset.m;msg='';draw();}
-  else if(a==='mnav'){mo.m+=+b.dataset.n;if(mo.m<0){mo.m=11;mo.y--;}if(mo.m>11){mo.m=0;mo.y++;}msg='';draw();}
+  else if(a==='mnav'){var ny=mo.y,nm3=mo.m+(+b.dataset.n),nw=new Date();if(nm3<0){nm3=11;ny--;}if(nm3>11){nm3=0;ny++;}if(ny>nw.getFullYear()||(ny===nw.getFullYear()&&nm3>nw.getMonth()))return;mo.y=ny;mo.m=nm3;msg='';draw();}
   else if(a==='qz'){var z=P().qz,kk=+b.dataset.k;z[kk]=Math.max(0,z[kk]+(+b.dataset.d));save();draw();}
-  else if(a==='addqz'){var list=mlist(mo.y,mo.m),x=an(mode==='w'?wlist():list),c=0;x.ml.forEach(function(m){var key=m[0]+'|'+m[1];if(!P().qa[key]){P().qa[key]=1;P().qz[m[1]]++;c++;}});save();say(c?bn(c)+' ওয়াক্ত কাযা তালিকায় যোগ হয়েছে।':'এগুলো আগেই যোগ করা হয়েছে।');}
-  else if(a==='copyrep'){var l=mode==='w'?wlist():mlist(mo.y,mo.m);cp(repText(an(l),mode==='w'?'সাপ্তাহিক ইবাদত রিপোর্ট':'মাসিক ইবাদত রিপোর্ট'),'রিপোর্ট কপি হয়েছে।');}
+  else if(a==='addqz'){var x=an(curList()),c=0;x.ml.forEach(function(m){var key=m[0]+'|'+m[1];if(!P().qa[key]){P().qa[key]=1;P().qz[m[1]]++;c++;}});save();say(c?bn(c)+' ওয়াক্ত কাযা তালিকায় যোগ হয়েছে।':'এগুলো আগেই যোগ করা হয়েছে।');}
+  else if(a==='copyrep'){cp(repText(an(curList()),repTitle()),'রিপোর্ট কপি হয়েছে।');}
   else if(a==='geo'){try{navigator.geolocation.getCurrentPosition(function(p){S.set.lat=+p.coords.latitude.toFixed(4);S.set.lng=+p.coords.longitude.toFixed(4);S.set.city=CT.length-1;save();say('অবস্থান নেওয়া হয়েছে।');},function(){say('অবস্থান পাওয়া যায়নি। শহর বেছে নিন বা হাতে লিখুন।');});}catch(x){say('এই ডিভাইসে অবস্থান পাওয়া যায়নি।');}}
   else if(a==='notif'){if(S.set.nf){S.set.nf=false;save();say('রিমাইন্ডার বন্ধ হয়েছে।');}else{try{Notification.requestPermission().then(function(p){S.set.nf=p==='granted';save();say(S.set.nf?'রিমাইন্ডার চালু হয়েছে।':'অনুমতি দেওয়া হয়নি।');});}catch(x){say('এই ব্রাউজারে নোটিফিকেশন চালু করা যায়নি।');}}}
   else if(a==='addprof'){var nm=(document.getElementById('nm').value||'').trim();if(!nm)return;i='p'+Date.now();S.p[i]=newP(nm);S.cur=i;save();msg='';draw();}
@@ -293,7 +384,7 @@ document.addEventListener('click',function(ev){var t=ev.target,b=t.closest('[dat
   else if(a==='share'){var tx=document.getElementById('shr').value;var fk=function(){cp(tx,'কপি হয়েছে, এখন যেকোনো জায়গায় পেস্ট করুন।');};try{navigator.share({title:'আমার ইবাদত খাতা',text:tx}).catch(function(er){if(!er||er.name!=='AbortError')fk();});}catch(x){fk();}}
   else if(a==='copysh'){cp(document.getElementById('shr').value,'কপি হয়েছে, এখন যেকোনো জায়গায় পেস্ট করুন।');}
   else if(a==='copybk'){cp(document.getElementById('bk').value,'ব্যাকআপ কপি হয়েছে। নিরাপদ জায়গায় সংরক্ষণ করুন।');}
-  else if(a==='impbk'){try{var o=JSON.parse(document.getElementById('imp').value);if(!o||!o.p)throw 1;S=o;S.set=Object.assign({city:0,lat:23.8103,lng:90.4125,adj:-1,nf:false},S.set||{});if(!S.p[S.cur])S.cur=Object.keys(S.p)[0]||'';save();say('তথ্য ফিরিয়ে আনা হয়েছে।');}catch(x){say('ব্যাকআপের লেখাটি সঠিক নয়।');}}
+  else if(a==='impbk'){try{var o=JSON.parse(document.getElementById('imp').value);if(!o||!o.p)throw 1;S=o;S.set=Object.assign({city:0,lat:23.8103,lng:90.4125,adj:-1,nf:false},S.set||{});if(!S.p[S.cur])S.cur=Object.keys(S.p)[0]||'';save();migrate();say('তথ্য ফিরিয়ে আনা হয়েছে।');}catch(x){say('ব্যাকআপের লেখাটি সঠিক নয়।');}}
   else if(a==='goedit'){tab='edit';msg='';draw();window.scrollTo(0,0);}
   else if(a==='backedit'){tab='day';msg='';draw();window.scrollTo(0,0);}
   else if(a==='tog'){var p1=P();p1.hide=p1.hide||{};p1.hide[b.dataset.i]=!p1.hide[b.dataset.i];save();draw();}
@@ -301,13 +392,21 @@ document.addEventListener('click',function(ev){var t=ev.target,b=t.closest('[dat
   else if(a==='mv'){var p3=P(),ids=items(true).map(function(q){return q.id;}),ix=ids.indexOf(b.dataset.i),jx=ix+(+b.dataset.d);if(jx>=0&&jx<ids.length){var tmp=ids[ix];ids[ix]=ids[jx];ids[jx]=tmp;p3.ord=ids;save();draw();}}
   else if(a==='addci'){var nm2=(document.getElementById('cn').value||'').trim();if(!nm2){say('আগে আমলের নাম লিখুন।');return;}addCI(nm2,document.getElementById('ct').value,(document.getElementById('cu').value||'').trim(),parseFloat(document.getElementById('cg').value)||0);}
   else if(a==='addtpl'){var tp=TPL[+b.dataset.i];addCI(tp[0],tp[1],tp[2]||'',0);}
+  else if(a==='add'){e=ent(cd);var f=b.dataset.f;e[f]=Math.max(0,Math.round(((+e[f]||0)+(+b.dataset.n))*10)/10);save();draw();}
+  else if(a==='wset'){e=ent(cd);var wv=+b.dataset.v;e.w=(+e.w===wv)?wv-1:wv;save();draw();}
+  else if(a==='theme'){S.set.th=isDark()?'light':'dark';save();draw();}
+  else if(a==='tap'){var ts=tas(),tp=TS[ts.i]||TS[0];ts.n++;ts.t++;if(ts.n>=tp[1]){ts.n=0;ts.r++;try{navigator.vibrate&&navigator.vibrate(200);}catch(x){}}else{try{navigator.vibrate&&navigator.vibrate(12);}catch(x){}}save();var c1=document.getElementById('tc');if(c1){c1.textContent=bn(ts.n);document.getElementById('tp').style.width=pct(ts.n,tp[1])+'%';document.getElementById('tr').textContent='পূর্ণ রাউন্ড: '+bn(ts.r)+' · মোট: '+bn(ts.t);}}
+  else if(a==='tundo'){var tu=tas(),tq=TS[tu.i]||TS[0];if(tu.n>0){tu.n--;tu.t=Math.max(0,tu.t-1);}else if(tu.r>0){tu.r--;tu.n=tq[1]-1;tu.t=Math.max(0,tu.t-1);}save();draw();}
+  else if(a==='treset'){S.tas={i:tas().i,n:0,r:0,t:0};save();draw();}
+  else if(a==='tpre'){var tz=tas();tz.i=+b.dataset.i;tz.n=0;save();draw();}
   else if(a==='reset'){if(confirm('সব প্রোফাইল ও তথ্য মুছে যাবে। নিশ্চিত?')){S.p={};S.cur='';save();draw();}}
 });
 document.addEventListener('change',function(ev){var t=ev.target,e;
   if(t.dataset.ib){e=ent(cd);e.i[t.dataset.ib]=t.checked;save();}
   else if(t.dataset.cx){e=ent(cd);e.x=e.x||{};e.x[t.dataset.cx]=Math.max(0,parseFloat(t.value)||0);save();}
   else if(t.dataset.en){var id=t.dataset.en,v=t.value.trim(),p4=P(),cu=(p4.cu||[]).filter(function(c){return c.id===id;})[0];if(cu){if(v)cu.n=v;}else{p4.ren=p4.ren||{};if(v)p4.ren[id]=v;else delete p4.ren[id];}save();draw();}
-  else if(t.dataset.n){e=ent(cd);e[t.dataset.n]=Math.max(0,parseFloat(t.value)||0);save();}
+  else if(t.hasAttribute('data-note')){e=ent(cd);e.note=t.value;save();}
+  else if(t.dataset.n){e=ent(cd);e[t.dataset.n]=Math.max(0,parseFloat(t.value)||0);save();draw();}
   else if(t.dataset.g){P().g[t.dataset.g]=Math.max(0,parseFloat(t.value)||0);save();draw();}
   else if(t.dataset.qzn!==undefined){P().qz[+t.dataset.qzn]=Math.max(0,parseInt(t.value,10)||0);save();draw();}
   else if(t.hasAttribute('data-prof')){S.cur=t.value;save();draw();}
@@ -319,6 +418,5 @@ document.addEventListener('change',function(ev){var t=ev.target,e;
 draw();setInterval(tick,1000);
 })();
 </script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}</script>
 </body>
 </html>
